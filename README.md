@@ -18,7 +18,7 @@ rustup toolchain install nightly --allow-downgrade
 rustup target add wasm32-unknown-unknown
 
 # Install the WASM binding generator CLI
-cargo install wasm-bindgen-cli --version 0.2.100
+cargo install wasm-bindgen-cli --version 0.2.114
 
 # Install Cloudflare Wrangler and TailwindCSS
 npm install
