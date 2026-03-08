@@ -16,7 +16,7 @@ pub fn ResumePage() -> impl IntoView {
                         </p>
                     </div>
                     <a href="/resume.pdf" target="_blank" class="btn-primary text-sm whitespace-nowrap">
-                        "[ Download_PDF ]"
+                        "[Download_PDF]"
                     </a>
                 </div>
             </header>

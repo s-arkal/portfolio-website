@@ -100,7 +100,7 @@ pub fn ContactPage() -> impl IntoView {
                                 </div>
                                 <div class="pt-2 flex justify-end">
                                     <button type="submit" class="btn-primary text-sm">
-                                        "[ Submit_Query ]"
+                                        "[Submit_Query]"
                                     </button>
                                 </div>
                             </form>
