@@ -134,7 +134,7 @@
         background-color: var(--bg);
         border-color: var(--border);
         color: var(--text);
-        @apply w-full px-4 py-3 rounded-none focus:outline-none focus:ring-1 focus:border-transparent transition-all duration-200;
+        @apply w-full border px-4 py-3 rounded-none focus:outline-none focus:ring-1 focus:border-transparent transition-all duration-200;
     }
 
     .input-field:focus {
