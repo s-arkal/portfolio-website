@@ -1,6 +1,6 @@
 [package]
 name = "rust-leptos-portfolio"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 
 [lib]
@@ -24,6 +24,7 @@ leptos_axum = { version = "0.7", default-features = false, optional = true }
 axum = { version = "0.7", default-features = false, optional = true, features = ["macros"] }
 serde = { version = "1", features = ["derive"] }
 console_error_panic_hook = { version = "0.1", optional = true }
+gloo-net = { version = "0.6", features = ["http"], optional = true }
 wasm-bindgen = "0.2"
 web-sys = { version = "0.3.77", features = ["Window", "Document", "Element", "DomTokenList", "Storage", "Navigator", "Clipboard"], optional = true }
 
@@ -39,6 +40,7 @@ hydrate = [
     "leptos/hydrate",
     "dep:console_error_panic_hook",
     "dep:web-sys",
+    "dep:gloo-net",
 ]
 ssr = [
     "dep:axum",
