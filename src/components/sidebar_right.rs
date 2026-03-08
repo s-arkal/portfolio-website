@@ -28,6 +28,33 @@ fn SkillCategory(title: &'static str, skills: Vec<(&'static str, &'static str)>)
 
 #[component]
 pub fn SidebarRight() -> impl IntoView {
+    let (commit_hash, set_commit_hash) = signal("-------".to_string());
+
+    #[cfg(feature = "hydrate")]
+    {
+        use leptos::task::spawn_local;
+        use gloo_net::http::Request;
+        use serde::Deserialize;
+
+        #[derive(Deserialize)]
+        struct GithubCommit {
+            sha: String,
+        }
+
+        spawn_local(async move {
+            let url = "https://api.github.com/repos/s-arkal/portfolio-website/commits/main";
+            if let Ok(resp) = Request::get(url).send().await {
+                if let Ok(commit) = resp.json::<GithubCommit>().await {
+                    set_commit_hash.set(commit.sha.chars().take(7).collect());
+                } else {
+                    set_commit_hash.set("api_err".to_string());
+                }
+            } else {
+                set_commit_hash.set("offline".to_string());
+            }
+        });
+    }
+
     view! {
         <aside class="hidden xl:flex flex-col w-64 max-w-[16rem] flex-shrink-0 border-l border-bdr bg-panel h-full p-6 overflow-y-auto">
             
@@ -63,11 +90,11 @@ pub fn SidebarRight() -> impl IntoView {
                     <div class="flex items-center gap-2">
                         <span class="inline-block w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] animate-pulse"></span>
                         <span class="text-[10px] text-txt font-bold tracking-wider">
-                            "LIVE"
+                            {format!("v{}", env!("CARGO_PKG_VERSION"))}
                         </span>
                     </div>
                     <span class="text-[10px] text-muted">
-                        "v1.0.0"
+                        {move || commit_hash.get()}
                     </span>
                 </div>
             </div>
