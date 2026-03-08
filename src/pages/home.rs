@@ -18,10 +18,12 @@ pub fn HomePage() -> impl IntoView {
                 <h2 class="text-xs font-bold tracking-widest text-muted uppercase mb-4">"Overview"</h2>
                 <div class="prose prose-invert max-w-none text-muted leading-relaxed space-y-4 text-sm sm:text-base">
                     <p>
-                        "I build AI systems, agent frameworks, and the infrastructure behind them. Most of my work sits at the intersection of machine learning, full-stack development, and systems programming."
+                        "I build AI systems, and the infrastructure behind them. Currently, my work sits at the intersection of machine learning, full-stack development, and systems programming."
                     </p>
                     <p>
-                        "Currently deep in the Rust ecosystem, exploring what agentic AI looks like when performance actually matters."
+                        "As of now, I am deep in the "
+                        <a href="https://www.rust-lang.org/" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">"Rust"</a>
+                        " ecosystem, exploring the intersection of agentic AI and high-performance systems engineering."
                     </p>
                 </div>
             </section>
