@@ -11,12 +11,8 @@ pub fn ContactPage() -> impl IntoView {
     let on_submit = move |ev: leptos::ev::SubmitEvent| {
         ev.prevent_default();
 
-        // read api key at compile time
-        let access_key = core::option_env!("WEB3FORMS_ACCESS_KEY")
-            .unwrap_or("MISSING_API_KEY");
-
         let payload = serde_json::json!({
-            "access_key": access_key,
+            "access_key": "b8344ba7-a8d6-48ca-a555-617590fa1baf", // Hardcoded for Cloudflare Pages compatibility
             "name": name.get(),
             "email": email.get(),
             "message": message.get()
