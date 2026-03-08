@@ -11,6 +11,7 @@ use crate::pages::background::BackgroundPage;
 use crate::pages::resume::ResumePage;
 use crate::pages::home::HomePage;
 use crate::pages::projects::ProjectsPage;
+use crate::components::sidebar_right::SidebarRight;
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -18,6 +19,7 @@ pub fn App() -> impl IntoView {
 
     view! {
         <Stylesheet id="leptos" href="/pkg/rust-leptos-portfolio.css" />
+        <Stylesheet id="devicon" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
         <Title text="Shriyans Arkal — Software Engineer" />
         <Meta name="description" content="Technical portfolio of Shriyans Arkal. Software Engineer specializing in Agentic AI." />
@@ -40,6 +42,9 @@ pub fn App() -> impl IntoView {
                         </Routes>
                     </div>
                 </main>
+
+                // right sidebar
+                <SidebarRight />
             </div>
         </Router>
     }
