@@ -8,7 +8,7 @@ pub fn ThemeSwitcher() -> impl IntoView {
 
     // effect to initialize the theme state from what the <script> set
     Effect::new(move |_| {
-        #[cfg(target_arch = "wasm32")]
+        #[cfg(feature = "hydrate")]
         {
             let window = window();
             if let Some(doc) = window.document() {
@@ -34,7 +34,7 @@ pub fn ThemeSwitcher() -> impl IntoView {
         let next = themes[next_idx];
         set_current_theme.set(next.to_string());
 
-        #[cfg(target_arch = "wasm32")]
+        #[cfg(feature = "hydrate")]
         {
             let window = window();
             if let Some(doc) = window.document() {

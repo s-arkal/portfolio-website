@@ -4,11 +4,11 @@ A full-stack portfolio website built entirely in **Rust** using the [Leptos](htt
 
 ## Architecture
 
-One Rust binary handles everything:
-- **SSR**: Server-side renders the initial HTML for fast page loads and SEO
-- **Hydration**: WASM takes over in the browser for interactivity
-- **Routing**: Client-side navigation via `leptos_router`
-- **Styling**: TailwindCSS scans `.rs` files for utility classes
+This project is deployed to **Cloudflare Pages via Cloudflare Workers**.
+- **SSR**: The Axum server is compiled to WebAssembly and runs in a Cloudflare Worker intercepting `fetch` events to server-side render the initial HTML.
+- **Hydration**: A separate client WebAssembly bundle takes over in the browser for interactivity.
+- **Routing**: Handled natively by `leptos_router`.
+- **Styling**: TailwindCSS scans `.rs` files for utility classes and compiles to `.css`.
 
 ## Prerequisites
 
@@ -17,44 +17,51 @@ One Rust binary handles everything:
 rustup toolchain install nightly --allow-downgrade
 rustup target add wasm32-unknown-unknown
 
-# Install cargo-leptos
-cargo install cargo-leptos --locked
+# Install the WASM binding generator CLI
+cargo install wasm-bindgen-cli --version 0.2.100
 
-# Install npm dependencies (TailwindCSS)
+# Install Cloudflare Wrangler and TailwindCSS
 npm install
 ```
 
 ## Development
 
+Since this project runs natively in WebAssembly via Cloudflare Workers, we use a custom bash script instead of `cargo leptos`.
+
 ```bash
-# Start dev server with hot-reload at http://127.0.0.1:3000
-cargo leptos watch
+# 1. Compile both the SSR Worker and Client WASM into the site/ directory
+./build.sh
+
+# 2. Start the local Cloudflare Wrangler dev server (http://127.0.0.1:8788)
+npx wrangler pages dev site
 ```
 
 ## Production Build
 
 ```bash
-cargo leptos build --release
+# Deploy straight to Cloudflare infra
+npx wrangler pages deploy site
 ```
-
-The compiled binary and static assets will be in `target/site/`.
 
 ## Project Structure
 
 ```
 src/
-├── main.rs              # Axum server entry point
-├── lib.rs               # WASM hydration entry point
+├── bin/
+│   ├── server.rs        # Cloudflare Worker SSR entry point
+│   └── client.rs        # Browser Hydration entry point
 ├── app.rs               # Root component + routing
 ├── pages/
 │   ├── home.rs          # Landing page
 │   ├── projects.rs      # Project showcase
-│   ├── blog.rs          # Blog listing
+│   ├── background.rs    # Experience & Education timeline
+│   ├── resume.rs        # Resume viewer
 │   └── contact.rs       # Contact form
 └── components/
-    ├── navbar.rs         # Navigation bar
-    └── footer.rs         # Footer
+    ├── sidebar_left.rs  # Main navigation
+    └── theme_switcher.rs # Global light/dark/solarized theme toggle
 style/
 └── tailwind.css          # TailwindCSS entry
-public/                   # Static assets
+site/                     # Generated build output
+build.sh                  # Custom compilation script
 ```
