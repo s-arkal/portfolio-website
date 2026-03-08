@@ -24,6 +24,7 @@ pub fn App() -> impl IntoView {
         <Title text="Shriyans Arkal — Software Engineer" />
         <Meta name="description" content="Technical portfolio of Shriyans Arkal. Software Engineer specializing in Agentic AI." />
         <Meta name="author" content="Shriyans Arkal" />
+        <Link rel="icon" type_="image/svg+xml" href="/favicon.svg" />
 
         <Router>
             <div class="min-h-screen bg-bg text-txt font-mono flex flex-col md:flex-row h-screen overflow-hidden">

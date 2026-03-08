@@ -5,6 +5,7 @@
     ],
     "exclude": [
         "/pkg/*",
-        "/favicon.ico"
+        "/favicon.ico",
+        "/favicon.svg"
     ]
 }
