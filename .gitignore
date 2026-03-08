@@ -1,0 +1,16 @@
+# Rust
+/target/
+Cargo.lock
+
+# Node / TailwindCSS
+node_modules/
+style/output.css
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
