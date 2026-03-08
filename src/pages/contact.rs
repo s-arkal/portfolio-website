@@ -10,8 +10,40 @@ pub fn ContactPage() -> impl IntoView {
 
     let on_submit = move |ev: leptos::ev::SubmitEvent| {
         ev.prevent_default();
-        // todo: impl form
-        set_submitted.set(true);
+
+        // read api key at compile time
+        let access_key = core::option_env!("WEB3FORMS_ACCESS_KEY")
+            .unwrap_or("MISSING_API_KEY");
+
+        let payload = serde_json::json!({
+            "access_key": access_key,
+            "name": name.get(),
+            "email": email.get(),
+            "message": message.get()
+        });
+
+        leptos::task::spawn_local(async move {
+            #[cfg(feature = "hydrate")]
+            {
+                let res = gloo_net::http::Request::post("https://api.web3forms.com/submit")
+                    .header("Content-Type", "application/json")
+                    .header("Accept", "application/json")
+                    .json(&payload)
+                    .expect("Failed to serialize payload")
+                    .send()
+                    .await;
+
+                match res {
+                    Ok(resp) if resp.ok() => {
+                        set_submitted.set(true);
+                    }
+                    _ => {
+                        // cba to surface the error
+                        leptos::logging::log!("Failed to submit form");
+                    }
+                }
+            }
+        });
     };
 
     view! {
