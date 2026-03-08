@@ -27,21 +27,21 @@ pub fn ProjectsPage() -> impl IntoView {
                             description="An autonomous research platform capable of multi-step reasoning and autonomous literature review. Allows researchers to dynamically query dense sets of documents, autonomously ingest external citations into a unified knowledge graph, and author documents with real-time AI copilot assistance."
                             labels=vec!["[Pydantic AI]", "[ChromaDB]", "[WebAssembly]", "[SQLite]", "[FastAPI]", "[Next.js]"]
                             status="WIP"
-                            github_link="https://github.com/shriyan-s/cogito"
+                            github_link="https://github.com/s-arkal/cogito"
                         />
                         <ProjectCard
                             title="Relay"
                             description="An agentic AI framework in Rust, because why not?"
                             labels=vec!["[Rust]", "[AI]", "[Agents]"]
                             status="WIP"
-                            github_link="https://github.com/shriyan-s/relay"
+                            github_link="https://github.com/s-arkal/relay"
                         />
                         <ProjectCard
                             title="rust-leptos-portfolio"
                             description="This very portfolio site. Built entirely in Rust using Leptos and WebAssembly, featuring a custom 4-theme system, responsive 3-column layout, and server-side rendering."
-                            labels=vec!["[Rust]", "[Leptos]", "[WASM]", "[Tailwind]"]
+                            labels=vec!["[Rust]", "[Leptos]", "[WebAssembly]", "[Tailwind]"]
                             status="Active"
-                            github_link="https://github.com/s-arkal/rust-leptos-portfolio"
+                            github_link="https://github.com/s-arkal/portfolio-website"
                         />
                     </div>
                 </section>
@@ -56,12 +56,12 @@ pub fn ProjectsPage() -> impl IntoView {
                         <ProjectCardDetailed
                             title="Gator Air Traffic Scheduler"
                             bullets=vec![
-                                "Built a high-performance Pythonair traffic control simulation system using advanced data structures (Max Pairing Heap, Binary Min Heap).",
+                                "Built a high-performance Python air traffic control simulation system using advanced data structures (Max Pairing Heap, Binary Min Heap).",
                                 "Engineered an efficient, non-preemptive logic to manage flight scheduling, reprioritization, and cancellations."
                             ]
                             labels=vec!["[Python]", "[Data Structures]", "[Algorithms]"]
                             status="Academic"
-                            github_link="https://github.com/shriyan-s"
+                            github_link="https://github.com/s-arkal/gator-air-traffic-scheduler"
                         />
                         <ProjectCardDetailed
                             title="OOPascal"
@@ -71,7 +71,7 @@ pub fn ProjectsPage() -> impl IntoView {
                             ]
                             labels=vec!["[Java]", "[ANTLR4]", "[Compilers]", "[Pascal]"]
                             status="Academic"
-                            github_link="https://github.com/shriyan-s"
+                            github_link="https://github.com/kthomasuf/COP5556-Project/tree/interpreter-implementation"
                         />
                     </div>
                 </section>
