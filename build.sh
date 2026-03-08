@@ -17,4 +17,7 @@ echo "Generating browser and worker bindings..."
 wasm-bindgen target/wasm32-unknown-unknown/release/server.wasm --out-name index --no-typescript --target bundler --out-dir site
 wasm-bindgen target/wasm32-unknown-unknown/release/client.wasm --out-name index --no-typescript --target web --out-dir site/pkg
 
+echo "Copying Cloudflare Pages configuration..."
+cp _worker.js _routes.json site/
+
 echo "Build complete."
