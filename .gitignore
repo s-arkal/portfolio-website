@@ -14,3 +14,7 @@ style/output.css
 .vscode/
 *.swp
 *.swo
+
+# Cloudflare
+.wrangler/
+site/
