@@ -15,7 +15,7 @@ pub fn ResumePage() -> impl IntoView {
                             "A detailed history of my academic and professional background."
                         </p>
                     </div>
-                    <a href="/resume.pdf" aria-label="Download Resume PDF" target="_blank" class="btn-primary text-sm whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-accent rounded-sm">
+                    <a href="/resume.pdf" aria-label="Download Resume PDF" target="_blank" class="btn-primary text-sm focus:outline-none focus:ring-2 focus:ring-accent">
                         "[Download_PDF]"
                     </a>
                 </div>

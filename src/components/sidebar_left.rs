@@ -29,7 +29,7 @@ pub fn SidebarLeft() -> impl IntoView {
 
                 // Mobile Menu Toggle
                 <button
-                    class="md:hidden p-2 text-txt hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded-sm"
+                    class="md:hidden p-2 text-txt hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
                     on:click=toggle_menu
                     aria-label="Toggle Navigation"
                     aria-expanded=move || is_open.get().to_string()
