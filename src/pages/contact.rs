@@ -63,19 +63,19 @@ pub fn ContactPage() -> impl IntoView {
                     <ul class="space-y-4">
                         <li>
                             <div class="text-xs font-mono text-muted mb-1">"Email"</div>
-                            <a href="mailto:shriyans.arkal07@gmail.com" class="text-sm font-medium text-txt hover:text-accent transition-colors">
+                            <a href="mailto:shriyans.arkal07@gmail.com" aria-label="Send an email to shriyans.arkal07@gmail.com" class="text-sm font-medium text-txt hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded-sm inline-block">
                                 "shriyans.arkal07@gmail.com"
                             </a>
                         </li>
                         <li>
                             <div class="text-xs font-mono text-muted mb-1">"GitHub"</div>
-                            <a href="https://github.com/s-arkal" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-txt hover:text-accent transition-colors">
+                            <a href="https://github.com/s-arkal" target="_blank" rel="noopener noreferrer" aria-label="View my GitHub Profile" class="text-sm font-medium text-txt hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded-sm inline-block">
                                 "github.com/s-arkal"
                             </a>
                         </li>
                         <li>
                             <div class="text-xs font-mono text-muted mb-1">"LinkedIn"</div>
-                            <a href="https://www.linkedin.com/in/shriyansa/" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-txt hover:text-accent transition-colors">
+                            <a href="https://www.linkedin.com/in/shriyansa/" target="_blank" rel="noopener noreferrer" aria-label="View my LinkedIn Profile" class="text-sm font-medium text-txt hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded-sm inline-block">
                                 "linkedin.com/in/shriyansa"
                             </a>
                         </li>
@@ -127,7 +127,7 @@ pub fn ContactPage() -> impl IntoView {
                                     />
                                 </div>
                                 <div class="pt-2 flex justify-end">
-                                    <button type="submit" class="btn-primary text-sm">
+                                    <button type="submit" class="btn-primary text-sm focus:outline-none focus:ring-2 focus:ring-accent rounded-sm">
                                         "[Submit_Query]"
                                     </button>
                                 </div>

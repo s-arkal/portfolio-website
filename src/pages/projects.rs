@@ -91,10 +91,10 @@ fn ProjectCard(
     };
 
     view! {
-        <a href=github_link target="_blank" rel="noopener noreferrer" class="card group flex flex-col h-full hover:bg-hover">
+        <a href=github_link aria-label=move || format!("View {} on GitHub", title) target="_blank" rel="noopener noreferrer" class="card group flex flex-col h-full hover:bg-hover focus:outline-none focus:ring-2 focus:ring-accent rounded-md">
             <div class="flex items-start justify-between mb-4">
                 <h3 class="text-base font-bold text-txt group-hover:text-accent transition-colors flex items-center gap-2">
-                    <svg class="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" class="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                     </svg>
                     {title}
