@@ -56,7 +56,7 @@ pub fn SidebarRight() -> impl IntoView {
     }
 
     view! {
-        <aside class="hidden xl:flex flex-col w-64 max-w-[16rem] flex-shrink-0 border-l border-bdr bg-panel h-full p-6 overflow-y-auto">
+        <aside class="flex flex-col w-full xl:w-64 max-w-none xl:max-w-[16rem] flex-shrink-0 border-t xl:border-t-0 xl:border-l border-bdr bg-panel h-auto xl:h-full p-6 xl:overflow-y-auto mt-8 xl:mt-0">
             
             <div class="mb-4">
                 <div class="text-xs font-bold tracking-widest text-txt uppercase mb-6 flex items-center justify-between">
