@@ -27,7 +27,7 @@ pub fn App() -> impl IntoView {
         <Link rel="icon" type_="image/svg+xml" href="/favicon.svg" />
 
         <Router>
-            <div class="min-h-screen bg-bg text-txt font-mono flex flex-col md:flex-row h-screen overflow-hidden">
+            <div class="min-h-screen bg-bg text-txt font-mono flex flex-col md:flex-row md:h-screen md:overflow-hidden overflow-x-hidden">
                 // left navigation
                 <SidebarLeft />
 

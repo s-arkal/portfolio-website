@@ -56,7 +56,7 @@ pub fn SidebarRight() -> impl IntoView {
     }
 
     view! {
-        <aside class="hidden xl:flex flex-col w-64 max-w-[16rem] flex-shrink-0 border-l border-bdr bg-panel h-full p-6 overflow-y-auto">
+        <aside class="flex flex-col w-full xl:w-64 max-w-none xl:max-w-[16rem] flex-shrink-0 border-t xl:border-t-0 xl:border-l border-bdr bg-panel h-auto xl:h-full p-6 xl:overflow-y-auto mt-8 xl:mt-0">
             
             <div class="mb-4">
                 <div class="text-xs font-bold tracking-widest text-txt uppercase mb-6 flex items-center justify-between">
@@ -65,23 +65,17 @@ pub fn SidebarRight() -> impl IntoView {
                 </div>
                 
                 <SkillCategory title="AI & Agents" skills=vec![
-                    ("Pydantic AI", "devicon-python-plain text-pink-500"), ("CrewAI", ""), ("LangChain", ""), 
-                    ("PyTorch", "devicon-pytorch-original colored"), ("RAG", ""), ("Fine-tuning", "")
+                    ("Pydantic AI", "devicon-python-plain text-pink-500"), ("CrewAI", ""), ("PyTorch", "devicon-pytorch-original colored")
                 ] />
                 <SkillCategory title="Languages" skills=vec![
                     ("Python", "devicon-python-plain colored"), ("Rust", "devicon-rust-plain"), ("TypeScript", "devicon-typescript-plain colored"), 
-                    ("JavaScript", "devicon-javascript-plain colored"), ("Java", "devicon-java-plain colored"), ("C", "devicon-c-plain colored"), ("SQL", "devicon-azuresqldatabase-plain colored")
+                    ("Java", "devicon-java-plain colored"), ("SQL", "devicon-azuresqldatabase-plain colored")
                 ] />
                 <SkillCategory title="Cloud & DevOps" skills=vec![
-                    ("AWS", "devicon-amazonwebservices-plain-wordmark colored"), ("Azure", "devicon-azure-plain colored"), ("GCP", "devicon-googlecloud-plain colored"), 
-                    ("Docker", "devicon-docker-plain colored"), ("CI/CD", "")
+                    ("AWS", "devicon-amazonwebservices-plain-wordmark colored"), ("Azure", "devicon-azure-plain colored"), ("Docker", "devicon-docker-plain colored")
                 ] />
                 <SkillCategory title="Systems & Backend" skills=vec![
                     ("WebAssembly", "devicon-wasm-original colored"), ("Linux", "devicon-linux-plain"), ("FastAPI", "devicon-fastapi-plain colored")
-                ] />
-                <SkillCategory title="Tools" skills=vec![
-                    ("Git", "devicon-git-plain colored"), ("VS Code", "devicon-vscode-plain colored"), 
-                    ("Jupyter", "devicon-jupyter-plain colored"), ("Postman", "devicon-postman-plain colored")
                 ] />
             </div>
 
