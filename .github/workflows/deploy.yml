@@ -25,18 +25,15 @@ jobs:
         uses: Swatinem/rust-cache@v2
 
       - name: Install wasm-bindgen-cli
-        run: cargo install wasm-bindgen-cli --version 0.2.114
+        run: cargo install wasm-bindgen-cli --version 0.2.125 --locked
 
       - name: Build project
-        run: |
-          npm install
-          ./build.sh
+        run: npm ci && npm run build
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: shriyans-arkal
-          directory: site
+          command: pages deploy site --project-name=shriyans-arkal
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}

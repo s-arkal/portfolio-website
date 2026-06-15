@@ -2,10 +2,16 @@
   "name": "rust-leptos-portfolio",
   "private": true,
   "devDependencies": {
+    "autoprefixer": "^10.4.0",
     "tailwindcss": "^3.4.0",
-    "autoprefixer": "^10.4.0"
+    "wrangler": "^4.0.0"
   },
   "scripts": {
-    "build:css": "npx tailwindcss -i ./style/tailwind.css -o ./style/output.css --minify"
+    "build": "./build.sh",
+    "build:css": "tailwindcss -i ./style/tailwind.css -o ./style/output.css --minify",
+    "dev": "wrangler pages dev",
+    "deploy": "npm run build && wrangler pages deploy --branch main",
+    "cf:login": "wrangler login",
+    "cf:project:create": "wrangler pages project create shriyans-arkal --production-branch main"
   }
 }

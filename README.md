@@ -18,10 +18,10 @@ rustup toolchain install nightly --allow-downgrade
 rustup target add wasm32-unknown-unknown
 
 # Install the WASM binding generator CLI
-cargo install wasm-bindgen-cli --version 0.2.114
+cargo install wasm-bindgen-cli --version 0.2.125 --locked
 
 # Install Cloudflare Wrangler and TailwindCSS
-npm install
+npm ci
 ```
 
 ## Development
@@ -30,18 +30,29 @@ Since this project runs natively in WebAssembly via Cloudflare Workers, we use a
 
 ```bash
 # 1. Compile both the SSR Worker and Client WASM into the site/ directory
-./build.sh
+npm run build
 
 # 2. Start the local Cloudflare Wrangler dev server (http://127.0.0.1:8788)
-npx wrangler pages dev site
+npm run dev
 ```
 
 ## Production Build
 
 ```bash
-# Deploy straight to Cloudflare infra
-npx wrangler pages deploy site
+# Authenticate once, recreate the deleted Pages project, then deploy
+npm run cf:login
+npm run cf:project:create
+npm run deploy
 ```
+
+The Pages project is configured in `wrangler.jsonc` as `shriyans-arkal`,
+with `main` used as the production branch. Wrangler's browser login stores
+Cloudflare credentials outside this repository; no API token belongs in source
+control.
+
+Pushes to `main` run `.github/workflows/deploy.yml`. The repository must have
+`CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` Actions secrets; the token
+needs the `Account > Cloudflare Pages > Edit` permission.
 
 ## Project Structure
 
