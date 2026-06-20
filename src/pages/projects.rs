@@ -15,57 +15,74 @@ pub fn ProjectsPage() -> impl IntoView {
             </header>
 
             <div class="space-y-16">
-                // ai systems category
+                // ai and machine learning category
                 <section>
                     <h2 class="text-xs font-bold tracking-widest text-muted uppercase mb-6 flex items-center gap-4">
-                        "AI Systems, Infrastructure & Full-stack"
+                        "AI & Machine Learning"
                         <div class="h-px bg-bdr flex-1"></div>
                     </h2>
                     <div class="grid grid-cols-1 gap-6">
                         <ProjectCard
-                            title="Cogito: Autonomous AI Academic Research Workspace"
-                            description="An autonomous research platform capable of multi-step reasoning and autonomous literature review. Allows researchers to dynamically query dense sets of documents, autonomously ingest external citations into a unified knowledge graph, and author documents with real-time AI copilot assistance."
-                            labels=vec!["[Pydantic AI]", "[ChromaDB]", "[WebAssembly]", "[SQLite]", "[FastAPI]", "[Next.js]"]
-                            status="WIP"
-                            github_link="https://github.com/s-arkal/cogito"
-                        />
-                        <ProjectCard
                             title="Relay"
-                            description="An agentic AI framework in Rust, because why not?"
-                            labels=vec!["[Rust]", "[AI]", "[Agents]"]
-                            status="WIP"
-                            github_link="https://github.com/s-arkal/relay"
+                            description="An async-first Rust agent framework with a ReAct runtime, provider adapters, typed tools, approval gates, durable runs, memory/RAG, workflows, tracing, evals, and Python bindings."
+                            labels=vec!["[Rust]", "[Tokio]", "[Agents]", "[RAG]", "[PyO3]"]
+                            github_link="https://github.com/s-arkal/Relay"
                         />
                         <ProjectCard
-                            title="rust-leptos-portfolio"
-                            description="This very portfolio site. Built entirely in Rust using Leptos and WebAssembly, featuring a custom 4-theme system, responsive 3-column layout, and server-side rendering."
-                            labels=vec!["[Rust]", "[Leptos]", "[WebAssembly]", "[Tailwind]"]
-                            status="Active"
+                            title="AddGPT"
+                            description="A 9.8M-parameter decoder-only Transformer implemented and trained from scratch for integer addition, with synthetic curriculum data, reversed targets, checkpointing, and per-digit exact-match evaluation."
+                            labels=vec!["[Python]", "[PyTorch]", "[Transformer]", "[Training]", "[Colab]"]
+                            github_link="https://github.com/s-arkal/AddGPT"
+                        />
+                    </div>
+                </section>
+
+                // full stack category
+                <section>
+                    <h2 class="text-xs font-bold tracking-widest text-muted uppercase mb-6 flex items-center gap-4">
+                        "Full Stack"
+                        <div class="h-px bg-bdr flex-1"></div>
+                    </h2>
+                    <div class="grid grid-cols-1 gap-6">
+                        <ProjectCard
+                            title="Cogito"
+                            description="A full-stack academic research workspace with an AI orchestrator, web and paper discovery, PDF RAG, versioned notes, and a LaTeX manuscript editor with compile and preview support."
+                            labels=vec!["[Pydantic AI]", "[Next.js]", "[FastAPI]", "[RAG]", "[LaTeX]"]
+                            github_link="https://github.com/s-arkal/Cogito"
+                        />
+                        <ProjectCard
+                            title="Respawn67"
+                            description="A team-built gaming community platform with authentication, catalog browsing, backlogs and custom lists, ratings and reviews, guides, articles, favorites, and public user profiles."
+                            labels=vec!["[React Router]", "[TypeScript]", "[Go]", "[Gin]", "[GORM]", "[SQLite]"]
+                            github_link="https://github.com/bobby-likes-f1/respawn67"
+                        />
+                        <ProjectCard
+                            title="Rust + Leptos Portfolio"
+                            description="This portfolio site: a Leptos application with server-side rendering in a Cloudflare Worker, browser-side WebAssembly hydration, responsive theming, and push-triggered Pages deployments."
+                            labels=vec!["[Rust]", "[Leptos]", "[WebAssembly]", "[Tailwind]", "[Cloudflare Pages]"]
                             github_link="https://github.com/s-arkal/portfolio-website"
                         />
                     </div>
                 </section>
 
-                // academic & coursework category
+                // systems category
                 <section>
                     <h2 class="text-xs font-bold tracking-widest text-muted uppercase mb-6 flex items-center gap-4">
-                        "Systems & Data Structures"
+                        "Systems"
                         <div class="h-px bg-bdr flex-1"></div>
                     </h2>
                     <div class="grid grid-cols-1 gap-6">
                         <ProjectCard
                             title="Gator Air Traffic Scheduler"
-                            description="A high-performance Python simulation system using advanced data structures (Max Pairing Heap, Binary Min Heap) to manage flight scheduling, reprioritization, and non-preemptive logic."
-                            labels=vec!["[Python]", "[Data Structures]", "[Algorithms]"]
-                            status="Academic"
+                            description="An event-driven air traffic scheduler built on custom binary min-heaps and a two-pass max pairing heap, supporting non-preemptive runway assignment, reprioritization, cancellation, and rescheduling."
+                            labels=vec!["[Python]", "[Pairing Heap]", "[Binary Heap]", "[Scheduling]"]
                             github_link="https://github.com/s-arkal/gator-air-traffic-scheduler"
                         />
                         <ProjectCard
-                            title="OOPascal"
-                            description="A Java-based interpreter extending Pascal with object-oriented features. Built a custom Lexer, Parser, and AST evaluator using ANTLR4 to support encapsulation, inheritance, and polymorphism."
-                            labels=vec!["[Java]", "[ANTLR4]", "[Compilers]", "[Pascal]"]
-                            status="Academic"
-                            github_link="https://github.com/kthomasuf/COP5556-Project/tree/interpreter-implementation"
+                            title="Object-Oriented Pascal Compiler"
+                            description="An ANTLR4 front end with a Java interpreter and LLVM IR backend for a Pascal-like language, lowering classes, inheritance, procedures, functions, arithmetic, and control flow to native executables and WebAssembly."
+                            labels=vec!["[Java]", "[ANTLR4]", "[LLVM IR]", "[Compiler]", "[WebAssembly]"]
+                            github_link="https://github.com/kthomasuf/COP5556-Project/tree/llvm"
                         />
                     </div>
                 </section>
@@ -79,17 +96,8 @@ fn ProjectCard(
     title: &'static str,
     description: &'static str,
     labels: Vec<&'static str>,
-    status: &'static str,
     github_link: &'static str,
 ) -> impl IntoView {
-    let status_color = match status {
-        "Active" => "text-green-500",
-        "WIP" => "text-blue-500",
-        "Academic" => "text-yellow-500",
-        "Archived" => "text-red-500",
-        _ => "text-muted",
-    };
-
     view! {
         <a href=github_link aria-label=move || format!("View {} on GitHub", title) target="_blank" rel="noopener noreferrer" class="card group flex flex-col h-full hover:bg-hover focus:outline-none focus:ring-2 focus:ring-accent">
             <div class="flex items-start justify-between mb-4">
@@ -105,22 +113,15 @@ fn ProjectCard(
                 {description}
             </p>
             
-            <div class="flex items-center justify-between mt-auto pt-4 border-t border-bdr">
-                <div class="flex flex-wrap gap-2">
-                    {labels.into_iter().map(|label| {
-                        view! {
-                            <span class="text-xs font-mono text-muted">
-                                {label}
-                            </span>
-                        }
-                    }).collect_view()}
-                </div>
-                <div class=format!("text-xs font-mono {} flex items-center gap-1.5 shrink-0 ml-4", status_color)>
-                    <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
-                    {status}
-                </div>
+            <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-bdr">
+                {labels.into_iter().map(|label| {
+                    view! {
+                        <span class="text-xs font-mono text-muted">
+                            {label}
+                        </span>
+                    }
+                }).collect_view()}
             </div>
         </a>
     }
 }
-

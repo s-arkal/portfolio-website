@@ -3,45 +3,6 @@ use leptos_meta::Title;
 
 #[component]
 pub fn ContactPage() -> impl IntoView {
-    let (name, set_name) = signal(String::new());
-    let (email, set_email) = signal(String::new());
-    let (message, set_message) = signal(String::new());
-    let (submitted, set_submitted) = signal(false);
-
-    let on_submit = move |ev: leptos::ev::SubmitEvent| {
-        ev.prevent_default();
-
-        let payload = serde_json::json!({
-            "access_key": "b8344ba7-a8d6-48ca-a555-617590fa1baf", // Hardcoded for Cloudflare Pages compatibility
-            "name": name.get(),
-            "email": email.get(),
-            "message": message.get()
-        });
-
-        leptos::task::spawn_local(async move {
-            #[cfg(feature = "hydrate")]
-            {
-                let res = gloo_net::http::Request::post("https://api.web3forms.com/submit")
-                    .header("Content-Type", "application/json")
-                    .header("Accept", "application/json")
-                    .json(&payload)
-                    .expect("Failed to serialize payload")
-                    .send()
-                    .await;
-
-                match res {
-                    Ok(resp) if resp.ok() => {
-                        set_submitted.set(true);
-                    }
-                    _ => {
-                        // cba to surface the error
-                        leptos::logging::log!("Failed to submit form");
-                    }
-                }
-            }
-        });
-    };
-
     view! {
         <Title text="Contact — Shriyans Arkal" />
 
@@ -53,11 +14,9 @@ pub fn ContactPage() -> impl IntoView {
                 </p>
             </header>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                // direct links
-                <div>
+            <section>
                     <h2 class="text-xs font-bold tracking-widest text-muted uppercase mb-6 flex items-center gap-4">
-                        "Links"
+                        "Contact"
                         <div class="h-px bg-bdr flex-1"></div>
                     </h2>
                     <ul class="space-y-4">
@@ -80,70 +39,7 @@ pub fn ContactPage() -> impl IntoView {
                             </a>
                         </li>
                     </ul>
-                </div>
-
-                // contact form
-                <div>
-                    <h2 class="text-xs font-bold tracking-widest text-muted uppercase mb-6 flex items-center gap-4">
-                        "Message"
-                        <div class="h-px bg-bdr flex-1"></div>
-                    </h2>
-                    
-                    <Show
-                        when=move || submitted.get()
-                        fallback=move || view! {
-                            <form on:submit=on_submit class="space-y-4">
-                                <div>
-                                    <label for="name" class="block text-xs font-mono text-muted mb-1">"Name"</label>
-                                    <input
-                                        id="name"
-                                        type="text"
-                                        class="input-field text-sm"
-                                        required=true
-                                        on:input=move |ev| set_name.set(event_target_value(&ev))
-                                        prop:value=move || name.get()
-                                    />
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-xs font-mono text-muted mb-1">"Email"</label>
-                                    <input
-                                        id="email"
-                                        type="email"
-                                        class="input-field text-sm"
-                                        required=true
-                                        on:input=move |ev| set_email.set(event_target_value(&ev))
-                                        prop:value=move || email.get()
-                                    />
-                                </div>
-                                <div>
-                                    <label for="message" class="block text-xs font-mono text-muted mb-1">"Payload"</label>
-                                    <textarea
-                                        id="message"
-                                        rows="4"
-                                        class="input-field resize-none text-sm"
-                                        required=true
-                                        on:input=move |ev| set_message.set(event_target_value(&ev))
-                                        prop:value=move || message.get()
-                                    />
-                                </div>
-                                <div class="pt-2 flex justify-end">
-                                    <button type="submit" class="btn-primary text-sm focus:outline-none focus:ring-2 focus:ring-accent">
-                                        "[Submit_Query]"
-                                    </button>
-                                </div>
-                            </form>
-                        }
-                    >
-                        <div class="card bg-hover border-accent/20 p-6 flex flex-col items-center justify-center text-center">
-                            <svg class="w-8 h-8 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <h3 class="font-bold text-txt mb-2">"Transmission Successful"</h3>
-                            <p class="text-sm text-muted">"Message logged to the queue. I'll get back to you shortly."</p>
-                        </div>
-                    </Show>
-                </div>
-            </div>
+            </section>
         </div>
     }
 }
